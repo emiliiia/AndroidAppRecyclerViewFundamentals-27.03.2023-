@@ -7,34 +7,23 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.convertDurationToFormatted
 import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
 
-
 //відповідає за відображення даних SleepNight на екрані користувача у вигляді списку,
 //а методи onBindViewHolder та onCreateViewHolder забезпечують коректну роботу зі
 //списком даних
-class SleepNightAdapter: RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
-
-    //містить список елементів SleepNight, які будуть відображені у списку RecyclerView
-    var data =  listOf<SleepNight>()
-        //оновлення списку даних, коли він змінюється
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    //повертає кількість елементів у списку data
-    override fun getItemCount() = data.size
+class SleepNightAdapter : ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) {
 
     //прив'язує дані до ViewHolder, що містить елемент списка
     //в ньому встановлюються значення полів sleepLength, quality та qualityImage
     // на основі даних конкретного елементу списка
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
