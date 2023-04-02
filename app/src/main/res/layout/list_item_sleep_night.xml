@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/quality_image"
+            app:sleepImage="@{sleep}"
             android:layout_width="@dimen/icon_size"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
@@ -27,6 +28,7 @@
 
         <TextView
             android:id="@+id/sleep_length"
+            app:sleepDurationFormatted="@{sleep}"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
@@ -39,6 +41,7 @@
 
         <TextView
             android:id="@+id/quality_string"
+            app:sleepQualityString="@{sleep}"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
